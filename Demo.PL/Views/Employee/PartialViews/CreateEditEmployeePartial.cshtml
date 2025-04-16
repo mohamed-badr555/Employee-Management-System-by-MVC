@@ -1,0 +1,75 @@
+﻿@model EmployeeViewModel
+
+
+@*@inject IDepartmentRepository departmentRepository*@
+@inject IUnitOfWork unitOfWork
+
+@{
+    //var departments = new SelectList(ViewBag.Departments, "Id", "Name");
+    var departments = new SelectList( unitOfWork.DepartmentRepository.GetAll(), "Id", "Name");
+
+}
+
+<div class="form-group">
+    <label class="col-form-label" asp-for="Name"></label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label class="col-form-label" asp-for="Age"></label>
+    <input asp-for="Age" class="form-control" />
+    <span asp-validation-for="Age" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label class="col-form-label" asp-for="Salary"></label>
+    <input asp-for="Salary" class="form-control" />
+    <span asp-validation-for="Salary" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label class="col-form-label" asp-for="Address"></label>
+    <input asp-for="Address" class="form-control" />
+    <span asp-validation-for="Address" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label class="col-form-label" asp-for="Email"></label>
+    <input asp-for="Email" class="form-control" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label class="col-form-label" asp-for="IsActive"></label>
+    <input asp-for="IsActive" class="form-control" />
+    <span asp-validation-for="IsActive" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label class="col-form-label" asp-for="Phone"></label>
+    <input asp-for="Phone" class="form-control" />
+    <span asp-validation-for="Phone" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label class="col-form-label" asp-for="HireDate"></label>
+    <input asp-for="HireDate" class="form-control" />
+    <span asp-validation-for="HireDate" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label class="col-form-label" asp-for="Department"></label>
+    <select class="form-control" asp-for="DepartmentId" asp-items="@departments">
+        <option value="@null">-- Select Department --</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label class="col-form-label" asp-for="Image"></label>
+    <input class="form-control" asp-for="Image" />
+    @if (!string.IsNullOrEmpty(Model.ImageName))
+    {
+        <div class="mt-2">
+            <img src="~/Files/Images/@Model.ImageName" class="img-fluid rounded-circle" style="max-width: 100px;" />
+            <span>Current image</span>
+        </div>
+    }
+</div>
